@@ -2,6 +2,7 @@ package god.selenium;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,17 +22,27 @@ class 셀레늄 {
 
 	@BeforeEach
 	void setup() {
+		// 크롬
 //		driver = new ChromeDriver();
 
-		// 크롬 옵션 설정
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
-
+//		// 크롬 옵션 설정
+//		ChromeOptions options = new ChromeOptions();
+//		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
+//
 //		options.addArguments("--headless"); // 헤드리스 모드 활성화
 //		options.addArguments("--disable-gpu"); // GPU 비활성화 (필요한 경우)
 //		options.addArguments("--window-size=1920x1080"); // 화면 크기 설정
 
-		driver = new ChromeDriver(options);
+//		driver = new ChromeDriver(options);
+
+		// 엣지
+
+		// 엣지 옵션 설정
+		EdgeOptions options = new EdgeOptions();
+		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
+
+//		driver = new EdgeDriver();
+		driver = new EdgeDriver(options);
 	}
 
 	@Test
@@ -44,6 +55,12 @@ class 셀레늄 {
 
 		driver.get("https://www.google.com/");
 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			throw new BaseRuntimeException("InterruptedException sleep", e);
+		}
+
 		String title = driver.getTitle();
 		if (log.isDebugEnabled()) {
 			log.debug("title={}", title);
@@ -54,8 +71,8 @@ class 셀레늄 {
 		// document.querySelectorAll('#APjFqb')
 		// document.querySelectorAll('[name="q"]')
 
-//		WebElement qWebElement = driver.findElement(By.id("APjFqb"));
-		WebElement qWebElement = driver.findElement(By.name("q"));
+		WebElement qWebElement = driver.findElement(By.id("APjFqb"));
+//		WebElement qWebElement = driver.findElement(By.name("q"));
 
 		if (log.isDebugEnabled()) {
 			log.debug("q.value={}", qWebElement.getAttribute("value"));
@@ -65,6 +82,12 @@ class 셀레늄 {
 
 		qWebElement.sendKeys(qkeysToSend);
 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			throw new BaseRuntimeException("InterruptedException sleep", e);
+		}
+
 		if (log.isDebugEnabled()) {
 			log.debug("q.value={}", qWebElement.getAttribute("value"));
 		}
@@ -72,7 +95,14 @@ class 셀레늄 {
 		// when
 		qWebElement.sendKeys(Keys.ENTER);
 
-		WebElement qWebElement2 = driver.findElement(By.name("q"));
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			throw new BaseRuntimeException("InterruptedException sleep", e);
+		}
+
+		WebElement qWebElement2 = driver.findElement(By.id("APjFqb"));
+//		WebElement qWebElement2 = driver.findElement(By.name("q"));
 		String qWebElement2value = qWebElement2.getAttribute("value");
 
 		if (log.isDebugEnabled()) {
