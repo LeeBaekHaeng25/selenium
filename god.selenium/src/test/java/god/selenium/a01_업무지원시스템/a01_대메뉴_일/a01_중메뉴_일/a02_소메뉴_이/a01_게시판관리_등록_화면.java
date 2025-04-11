@@ -14,6 +14,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
@@ -33,20 +35,35 @@ class a01_게시판관리_등록_화면 {
 //	@BeforeEach
 	@BeforeAll
 	void setup() {
+//		setupA();
+		setupB();
+
+		setupC();
+	}
+
+	void setupA() {
 		// 크롬
 //		driver = new ChromeDriver();
 
-//		// 크롬 옵션 설정
-//		ChromeOptions options = new ChromeOptions();
-//		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
+		// chromedriver.exe 경로 설정
+		System.setProperty("webdriver.chrome.driver", "C:\\EGOV-4.3.0-SELENIUM\\chromedriver-win64\\chromedriver.exe");
+
+		// 크롬 옵션 설정
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
 //
 //		options.addArguments("--headless"); // 헤드리스 모드 활성화
 //		options.addArguments("--disable-gpu"); // GPU 비활성화 (필요한 경우)
 //		options.addArguments("--window-size=1920x1080"); // 화면 크기 설정
 
-//		driver = new ChromeDriver(options);
+		driver = new ChromeDriver(options);
+	}
 
+	void setupB() {
 		// 엣지
+
+		// msedgedriver.exe 경로 직접 지정
+		System.setProperty("webdriver.edge.driver", "C:\\EGOV-4.3.0-SELENIUM\\edgedriver_win64\\msedgedriver.exe");
 
 		// 엣지 옵션 설정
 		EdgeOptions options = new EdgeOptions();
@@ -54,6 +71,10 @@ class a01_게시판관리_등록_화면 {
 
 //		driver = new EdgeDriver();
 		driver = new EdgeDriver(options);
+	}
+
+	void setupC() {
+		driver.manage().window().maximize();
 
 		driver.get("http://localhost:8080/egovframework-all-in-one/");
 //		sleep(millis3000);
