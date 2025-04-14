@@ -35,8 +35,8 @@ class a01_게시판관리_등록_화면 {
 //	@BeforeEach
 	@BeforeAll
 	void setup() {
-//		setupA();
-		setupB();
+		setupA();
+//		setupB();
 
 		setupC();
 	}
@@ -212,6 +212,7 @@ class a01_게시판관리_등록_화면 {
 		// 게시판 유형 필수 선택/입력
 		WebElement bbsTyCodeWebElement = driver.findElement(By.id("bbsTyCode"));
 		bbsTyCodeWebElement.sendKeys("통합게시판");
+		sleep();
 
 		// 답장가능여부 필수 선택/입력
 		WebElement replyPosblAtWebElement = driver.findElement(By.id("replyPosblAt"));
@@ -225,7 +226,9 @@ class a01_게시판관리_등록_화면 {
 
 		// 첨부가능파일숫자 필수 선택/입력
 		WebElement atchPosblFileNumberWebElement = driver.findElement(By.id("atchPosblFileNumber"));
-		atchPosblFileNumberWebElement.sendKeys("1");
+//		atchPosblFileNumberWebElement.sendKeys("1");
+//		atchPosblFileNumberWebElement.sendKeys("2");
+		atchPosblFileNumberWebElement.sendKeys("3");
 		sleep();
 
 		// 사용여부 필수 선택/입력
@@ -257,6 +260,8 @@ class a01_게시판관리_등록_화면 {
 
 	void sleep() {
 		sleep(millis1000);
+//		sleep(millis2000);
+//		sleep(millis3000);
 	}
 
 	void sleep(long millis) {

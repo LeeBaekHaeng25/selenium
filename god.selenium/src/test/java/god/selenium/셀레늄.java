@@ -10,8 +10,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,23 +26,23 @@ class 셀레늄 {
 //		driver = new ChromeDriver();
 
 //		// 크롬 옵션 설정
-//		ChromeOptions options = new ChromeOptions();
-//		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
 //
 //		options.addArguments("--headless"); // 헤드리스 모드 활성화
 //		options.addArguments("--disable-gpu"); // GPU 비활성화 (필요한 경우)
 //		options.addArguments("--window-size=1920x1080"); // 화면 크기 설정
 
-//		driver = new ChromeDriver(options);
+		driver = new ChromeDriver(options);
 
-		// 엣지
-
-		// 엣지 옵션 설정
-		EdgeOptions options = new EdgeOptions();
-		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
-
-//		driver = new EdgeDriver();
-		driver = new EdgeDriver(options);
+//		// 엣지
+//
+//		// 엣지 옵션 설정
+//		EdgeOptions options = new EdgeOptions();
+//		options.addArguments("--disable-blink-features=AutomationControlled"); // 봇 감지 우회
+//
+////		driver = new EdgeDriver();
+//		driver = new EdgeDriver(options);
 	}
 
 	@Test
